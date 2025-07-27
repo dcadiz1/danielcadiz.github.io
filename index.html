@@ -1,35 +1,64 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daniel Cádiz - Portafolio</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estudio de Barbería by Daniel Cadiz</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <header>
-    <h1>Daniel Enrique Cádiz Caraballo</h1>
-    <p>Desarrollador Web | Técnico en Sistemas | Soporte Técnico</p>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- NAVBAR -->
+  <header class="bg-black text-white p-5 text-center text-2xl font-bold">
+    Estudio de Barbería by Daniel Cadiz
   </header>
-  <section>
-    <h2>Sobre mí</h2>
-    <p>Soy un técnico en sistemas de 31 años con conocimientos en programación web (PHP, HTML, CSS, Java),
-    soporte técnico nivel I y II, dominio del paquete Office y habilidades en atención al cliente.</p>
-    <p>Actualmente retomo mi camino como programador con compromiso, pasión por aprender y actitud positiva
-    para involucrarme en proyectos de desarrollo freelance.</p>
+
+  <!-- PORTADA -->
+  <section class="text-center py-10">
+    <img src="logo.png" alt="Logo Barbería" class="mx-auto w-32 mb-4">
+    <h1 class="text-3xl font-semibold">¡Bienvenido a tu nueva experiencia de barbería!</h1>
   </section>
-  <section>
-    <h2>Habilidades Técnicas</h2>
-    <ul>
-      <li>HTML, CSS, PHP, Java</li>
-      <li>Soporte técnico (Nivel I y II)</li>
-      <li>Office (Word, Excel, PowerPoint)</li>
-      <li>Atención al cliente</li>
-    </ul>
+
+  <!-- SERVICIOS -->
+  <section class="py-10 px-4">
+    <h2 class="text-2xl font-bold text-center mb-6">Nuestros Servicios</h2>
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div class="bg-white p-4 shadow rounded text-center">Corte Clásico</div>
+      <div class="bg-white p-4 shadow rounded text-center">Barba y Afeitado</div>
+      <div class="bg-white p-4 shadow rounded text-center">Diseño y Degradado</div>
+      <div class="bg-white p-4 shadow rounded text-center">Color y Tinte</div>
+      <div class="bg-white p-4 shadow rounded text-center">Cejas</div>
+      <div class="bg-white p-4 shadow rounded text-center">Faciales Exprés</div>
+    </div>
   </section>
-  <footer>
-    <p>Gracias por visitar mi portafolio.</p>
+
+  <!-- AGENDA TU CITA -->
+  <section class="py-10 px-4 bg-gray-100">
+    <h2 class="text-2xl font-bold text-center mb-4">Agenda tu Cita</h2>
+    <form class="max-w-md mx-auto space-y-4 text-center">
+      <input type="text" placeholder="Nombre" class="w-full p-2 border rounded" />
+      <input type="tel" placeholder="Teléfono" class="w-full p-2 border rounded" />
+      <input type="date" class="w-full p-2 border rounded" />
+      <input type="time" class="w-full p-2 border rounded" />
+      <button class="bg-black text-white px-6 py-2 rounded">Reservar</button>
+    </form>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="py-10 px-4">
+    <h2 class="text-2xl font-bold text-center mb-4">Contáctanos</h2>
+    <form class="max-w-md mx-auto space-y-4 text-center">
+      <input type="email" placeholder="Correo electrónico" class="w-full p-2 border rounded" />
+      <textarea placeholder="Tu mensaje" class="w-full p-2 border rounded h-32"></textarea>
+      <button class="bg-black text-white px-6 py-2 rounded">Enviar</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black text-white text-center p-4 mt-10">
+    © 2025 Estudio de Barbería by Daniel Cadiz <br>
+    Instagram: @tu_instagram | WhatsApp: +57 300 000 0000
   </footer>
+
 </body>
 </html>
