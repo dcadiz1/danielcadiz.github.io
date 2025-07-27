@@ -3,90 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Estudio de Barbería by Daniel Cadiz</title>
+  <title>ESTUDIO DE BARBERÍA by DANIEL CADIZ</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-gray-50 text-gray-800">
 
-  <!-- NAVBAR -->
-  <header class="bg-black text-white p-5 text-center text-2xl font-bold">
-    Estudio de Barbería by Daniel Cadiz
+  <header class="bg-black text-white text-center py-6">
+    <h1 class="text-3xl font-bold">ESTUDIO DE BARBERÍA by DANIEL CADIZ</h1>
   </header>
 
-  <!-- PORTADA -->
-  <section class="text-center py-10">
-    <img src="logo.png" alt="Logo Barbería" class="mx-auto w-32 mb-4">
-    <h1 class="text-3xl font-semibold">¡Bienvenido a tu nueva experiencia de barbería!</h1>
+  <section class="text-center py-12">
+    <h2 class="text-2xl font-semibold mb-4">Nuestros Servicios</h2>
+    <p class="max-w-xl mx-auto">Ofrecemos cortes clásicos, barba y afeitado, diseño, cejas, color y tratamientos faciales para todos los estilos.</p>
   </section>
 
-  <!-- SERVICIOS -->
-  <section class="py-10 px-4">
-    <h2 class="text-2xl font-bold text-center mb-6">Nuestros Servicios</h2>
-    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-      <div class="bg-white p-4 shadow rounded text-center">Corte Clásico</div>
-      <div class="bg-white p-4 shadow rounded text-center">Barba y Afeitado</div>
-      <div class="bg-white p-4 shadow rounded text-center">Diseño y Degradado</div>
-      <div class="bg-white p-4 shadow rounded text-center">Color y Tinte</div>
-      <div class="bg-white p-4 shadow rounded text-center">Cejas</div>
-      <div class="bg-white p-4 shadow rounded text-center">Faciales Exprés</div>
-    </div>
-  </section>
-<!-- FORMULARIO DE CITAS -->
-<section class="mt-12 text-center px-4">
-  <h2 class="text-2xl font-bold mb-6">Agenda tu Cita</h2>
-  <form onsubmit="enviarWhatsApp(); return false;" class="max-w-md mx-auto text-left space-y-4">
-    <div>
-      <label for="nombre" class="block font-semibold">Nombre completo</label>
-      <input type="text" id="nombre" name="nombre" required class="w-full p-2 border rounded" />
-    </div>
-
-    <div>
-      <label for="fecha" class="block font-semibold">Fecha</label>
-      <input type="date" id="fecha" name="fecha" required class="w-full p-2 border rounded" />
-    </div>
-
-    <div>
-      <label for="hora" class="block font-semibold">Hora</label>
-      <input type="time" id="hora" name="hora" required class="w-full p-2 border rounded" />
-    </div>
-
-    <div class="text-center">
-      <button type="submit" class="bg-black text-white px-6 py-2 rounded hover:bg-gray-800">
-        Reservar Cita
-      </button>
-    </div>
-  </form>
-</section>
-
-<script>
-  function enviarWhatsApp() {
-    const nombre = document.getElementById("nombre").value;
-    const fecha = document.getElementById("fecha").value;
-    const hora = document.getElementById("hora").value;
-
-    const mensaje = `Hola, quiero agendar una cita.%0A%0A🧑 Nombre: ${nombre}%0A📅 Fecha: ${fecha}%0A🕒 Hora: ${hora}`;
-    const telefono = "573122581820"; // ← CAMBIA este número por el tuyo
-
-    const url = `https://wa.me/${telefono}?text=${mensaje}`;
-    window.open(url, "_blank");
-  }
-</script>
-
-  <!-- CONTACTO -->
-  <section class="py-10 px-4">
-    <h2 class="text-2xl font-bold text-center mb-4">Contáctanos</h2>
-    <form class="max-w-md mx-auto space-y-4 text-center">
-      <input type="email" placeholder="Correo electrónico" class="w-full p-2 border rounded" />
-      <textarea placeholder="Tu mensaje" class="w-full p-2 border rounded h-32"></textarea>
-      <button class="bg-black text-white px-6 py-2 rounded">Enviar</button>
+  <section class="bg-white py-12">
+    <h2 class="text-2xl font-semibold text-center mb-6">Agendar una Cita</h2>
+    <form onsubmit="enviarWhatsApp(); return false;" class="max-w-md mx-auto text-left space-y-4">
+      <div>
+        <label for="nombre" class="block font-semibold">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required class="w-full p-2 border rounded" />
+      </div>
+      <div>
+        <label for="telefono" class="block font-semibold">Teléfono</label>
+        <input type="tel" id="telefono" name="telefono" required class="w-full p-2 border rounded" />
+      </div>
+      <div>
+        <label for="servicio" class="block font-semibold">Servicio</label>
+        <select id="servicio" name="servicio" required class="w-full p-2 border rounded">
+          <option value="">Selecciona un servicio</option>
+          <option value="Corte Clásico">Corte Clásico</option>
+          <option value="Barba y Afeitado">Barba y Afeitado</option>
+          <option value="Diseño y Degradado">Diseño y Degradado</option>
+          <option value="Color y Tinte">Color y Tinte</option>
+          <option value="Cejas">Cejas</option>
+          <option value="Faciales Exprés">Faciales Exprés</option>
+        </select>
+      </div>
+      <div>
+        <label for="fecha" class="block font-semibold">Fecha</label>
+        <input type="date" id="fecha" name="fecha" required class="w-full p-2 border rounded" />
+      </div>
+      <div>
+        <label for="hora" class="block font-semibold">Hora</label>
+        <input type="time" id="hora" name="hora" required class="w-full p-2 border rounded" />
+      </div>
+      <button type="submit" class="w-full bg-black text-white py-2 rounded hover:bg-gray-800">Reservar Cita</button>
     </form>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="bg-black text-white text-center p-4 mt-10">
-    © 2025 Estudio de Barbería by Daniel Cadiz <br>
-    Instagram: @tu_instagram | WhatsApp: +57 312 2581820
-  </footer>
+  <script>
+    function enviarWhatsApp() {
+      const nombre = document.getElementById("nombre").value;
+      const telefonoCliente = document.getElementById("telefono").value;
+      const servicio = document.getElementById("servicio").value;
+      const fecha = document.getElementById("fecha").value;
+      const hora = document.getElementById("hora").value;
+
+      const mensaje = `Hola, quiero agendar una cita.%0A%0A🧑 Nombre: ${nombre}%0A📱 Teléfono: ${telefonoCliente}%0A✂️ Servicio: ${servicio}%0A📅 Fecha: ${fecha}%0A🕒 Hora: ${hora}`;
+      const telefono = "573122581820";
+      const url = `https://wa.me/${telefono}?text=${mensaje}`;
+      window.open(url, "_blank");
+    }
+  </script>
 
 </body>
 </html>
