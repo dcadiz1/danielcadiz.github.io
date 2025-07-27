@@ -1,71 +1,97 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ESTUDIO DE BARBERÍA by DANIEL CADIZ</title>
+  <title>Agenda tu cita - Estudio de Barbería</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-  <header class="bg-black text-white text-center py-6">
-    <h1 class="text-3xl font-bold">ESTUDIO DE BARBERÍA by DANIEL CADIZ</h1>
+  <header class="bg-black text-white p-5 text-center text-2xl font-bold">
+    Estudio de Barbería by Daniel Cadiz
   </header>
 
-  <section class="text-center py-12">
-    <h2 class="text-2xl font-semibold mb-4">Nuestros Servicios</h2>
-    <p class="max-w-xl mx-auto">Ofrecemos cortes clásicos, barba y afeitado, diseño, cejas, color y tratamientos faciales para todos los estilos.</p>
-  </section>
-
-  <section class="bg-white py-12">
-    <h2 class="text-2xl font-semibold text-center mb-6">Agendar una Cita</h2>
-    <form onsubmit="enviarWhatsApp(); return false;" class="max-w-md mx-auto text-left space-y-4">
+  <section class="text-center py-10 px-4">
+    <h1 class="text-3xl font-semibold mb-6">Agenda tu Cita</h1>
+    <form id="formularioCita" class="max-w-md mx-auto text-left space-y-4">
       <div>
-        <label for="nombre" class="block font-semibold">Nombre</label>
-        <input type="text" id="nombre" name="nombre" required class="w-full p-2 border rounded" />
-      </div>
-      <div>
-        <label for="telefono" class="block font-semibold">Teléfono</label>
-        <input type="tel" id="telefono" name="telefono" required class="w-full p-2 border rounded" />
-      </div>
-      <div>
-        <label for="servicio" class="block font-semibold">Servicio</label>
-        <select id="servicio" name="servicio" required class="w-full p-2 border rounded">
-          <option value="">Selecciona un servicio</option>
-          <option value="Corte Clásico">Corte Clásico</option>
-          <option value="Barba y Afeitado">Barba y Afeitado</option>
-          <option value="Diseño y Degradado">Diseño y Degradado</option>
-          <option value="Color y Tinte">Color y Tinte</option>
-          <option value="Cejas">Cejas</option>
-          <option value="Faciales Exprés">Faciales Exprés</option>
-        </select>
+        <label for="nombre" class="block font-semibold">Nombre completo</label>
+        <input type="text" id="nombre" required class="w-full p-2 border rounded" />
       </div>
       <div>
         <label for="fecha" class="block font-semibold">Fecha</label>
-        <input type="date" id="fecha" name="fecha" required class="w-full p-2 border rounded" />
+        <input type="date" id="fecha" required class="w-full p-2 border rounded" />
       </div>
       <div>
         <label for="hora" class="block font-semibold">Hora</label>
-        <input type="time" id="hora" name="hora" required class="w-full p-2 border rounded" />
+        <select id="hora" required class="w-full p-2 border rounded">
+          <option value="">Selecciona una hora</option>
+        </select>
       </div>
-      <button type="submit" class="w-full bg-black text-white py-2 rounded hover:bg-gray-800">Reservar Cita</button>
+      <div class="text-center">
+        <button type="submit" class="bg-black text-white px-6 py-2 rounded hover:bg-gray-800">
+          Reservar Cita
+        </button>
+      </div>
     </form>
+
+    <p id="confirmacion" class="mt-6 text-green-600 font-semibold hidden">
+      ✅ ¡Tu cita ha sido reservada con éxito!
+    </p>
   </section>
 
   <script>
-    function enviarWhatsApp() {
+    const horasDisponibles = [
+      "08:00", "09:00", "10:00", "11:00", "12:00",
+      "14:00", "15:00", "16:00", "17:00", "18:00"
+    ];
+
+    const form = document.getElementById("formularioCita");
+    const horaSelect = document.getElementById("hora");
+    const confirmacion = document.getElementById("confirmacion");
+
+    // Cargar horas disponibles
+    function cargarHoras(fecha) {
+      const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+      const horasTomadas = reservas.filter(r => r.fecha === fecha).map(r => r.hora);
+      horaSelect.innerHTML = '<option value="">Selecciona una hora</option>';
+      horasDisponibles.forEach(hora => {
+        if (!horasTomadas.includes(hora)) {
+          const option = document.createElement("option");
+          option.value = hora;
+          option.textContent = hora;
+          horaSelect.appendChild(option);
+        }
+      });
+    }
+
+    document.getElementById("fecha").addEventListener("change", (e) => {
+      cargarHoras(e.target.value);
+    });
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
       const nombre = document.getElementById("nombre").value;
-      const telefonoCliente = document.getElementById("telefono").value;
-      const servicio = document.getElementById("servicio").value;
       const fecha = document.getElementById("fecha").value;
       const hora = document.getElementById("hora").value;
 
-      const mensaje = `Hola, quiero agendar una cita.%0A%0A🧑 Nombre: ${nombre}%0A📱 Teléfono: ${telefonoCliente}%0A✂️ Servicio: ${servicio}%0A📅 Fecha: ${fecha}%0A🕒 Hora: ${hora}`;
-      const telefono = "573122581820";
-      const url = `https://wa.me/${telefono}?text=${mensaje}`;
-      window.open(url, "_blank");
-    }
+      if (!nombre || !fecha || !hora) return;
+
+      const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+      reservas.push({ nombre, fecha, hora });
+      localStorage.setItem("reservas", JSON.stringify(reservas));
+
+      form.reset();
+      confirmacion.classList.remove("hidden");
+      cargarHoras(fecha);
+    });
   </script>
 
+  <footer class="bg-black text-white text-center p-4 mt-10">
+    © 2025 Estudio de Barbería by Daniel Cadiz<br>
+    WhatsApp: +57 312 2581820
+  </footer>
 </body>
 </html>
