@@ -34,45 +34,43 @@
 <!-- FORMULARIO DE CITAS -->
 <section class="mt-12 text-center px-4">
   <h2 class="text-2xl font-bold mb-6">Agenda tu Cita</h2>
-  <form class="max-w-md mx-auto text-left space-y-4">
+  <form onsubmit="enviarWhatsApp(); return false;" class="max-w-md mx-auto text-left space-y-4">
     <div>
       <label for="nombre" class="block font-semibold">Nombre completo</label>
-      <input type="text" id="nombre" name="nombre" required class="w-full p-2 border rounded">
+      <input type="text" id="nombre" name="nombre" required class="w-full p-2 border rounded" />
     </div>
 
     <div>
       <label for="fecha" class="block font-semibold">Fecha</label>
-      <input type="date" id="fecha" name="fecha" required class="w-full p-2 border rounded">
+      <input type="date" id="fecha" name="fecha" required class="w-full p-2 border rounded" />
     </div>
 
     <div>
       <label for="hora" class="block font-semibold">Hora</label>
-      <input type="time" id="hora" name="hora" required class="w-full p-2 border rounded">
+      <input type="time" id="hora" name="hora" required class="w-full p-2 border rounded" />
     </div>
 
-    <div>
-      <label for="servicio" class="block font-semibold">Servicio</label>
-      <select id="servicio" name="servicio" required class="w-full p-2 border rounded">
-        <option value="">-- Selecciona un servicio --</option>
-        <option value="Corte Clásico">Corte Clásico</option>
-        <option value="Barba y Afeitado">Barba y Afeitado</option>
-        <option value="Diseño y Degradado">Diseño y Degradado</option>
-        <option value="Color y Tinte">Color y Tinte</option>
-        <option value="Cejas">Cejas</option>
-        <option value="Faciales Exprés">Faciales Exprés</option>
-      </select>
+    <div class="text-center">
+      <button type="submit" class="bg-black text-white px-6 py-2 rounded hover:bg-gray-800">
+        Reservar Cita
+      </button>
     </div>
-
-    <div>
-      <label for="comentarios" class="block font-semibold">Comentarios (opcional)</label>
-      <textarea id="comentarios" name="comentarios" rows="3" class="w-full p-2 border rounded"></textarea>
-    </div>
-
-    <button type="submit" class="bg-black text-white py-2 px-4 rounded hover:bg-gray-800">
-      Reservar cita
-    </button>
   </form>
 </section>
+
+<script>
+  function enviarWhatsApp() {
+    const nombre = document.getElementById("nombre").value;
+    const fecha = document.getElementById("fecha").value;
+    const hora = document.getElementById("hora").value;
+
+    const mensaje = `Hola, quiero agendar una cita.%0A%0A🧑 Nombre: ${nombre}%0A📅 Fecha: ${fecha}%0A🕒 Hora: ${hora}`;
+    const telefono = "573001234567"; // ← CAMBIA este número por el tuyo
+
+    const url = `https://wa.me/${telefono}?text=${mensaje}`;
+    window.open(url, "_blank");
+  }
+</script>
 
   <!-- AGENDA TU CITA -->
   <section class="py-10 px-4 bg-gray-100">
